@@ -14,5 +14,5 @@ def solution(p: float, x: np.array) -> tuple:
     g2 = stats.gamma(N, 1).ppf(1-p/2)/N
 
     l = (g1 + mean) / T_2
-    r = (g2 + mean) / T_2
+    r = (2*g2 + mean) / T_2
     return (l, r)
