@@ -10,9 +10,9 @@ def solution(p: float, x: np.array) -> tuple:
     N = len(x)
     T_2 = 77*77 / 2
     mean = np.mean(x)
-    g1 = stats.gamma(N, 1).ppf(p/2)/N
-    g2 = stats.gamma(N, 1).ppf(1-p/2)/N
-
-    l = (g1 + mean) / T_2
-    r = (2*g2 + mean) / T_2
-    return (l, r)
+    er = stats.erlang(N, 1)
+    g1 = er.ppf((1-p)/2)/N
+    g2 = er.ppf((1+p)/2)/N
+    l = (1*g1+g1 + mean-1/2) / T_2
+    r = (1*g1+g2 + mean-1/2) / T_2
+    return l, r
